@@ -1,0 +1,64 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="payment_acquirer_view_form_inherit_payment_cinetpay">
+      <field name="name">cinetpay.form.payment.conf</field>
+      <field name="model">payment.acquirer</field>
+      <field name="inherit_id" ref="payment.acquirer_form"/>
+      <field name="arch" type="xml">
+       <xpath expr='//group[@name="acquirer"]' position='inside'>
+                <group attrs="{'invisible': [('provider', '!=', 'cinetpay')]}">
+                    <field name="apiKey"  attrs="{'required':[ ('provider', '=', 'cinetpay'), ('state', '!=', 'disabled')]}"/>
+                    <field name="Site_Id"  attrs="{'required':[ ('provider', '=', 'cinetpay'), ('state', '!=', 'disabled')]}"/>
+                    <field name="notify_url"/>
+                    <field name="payment_url" attrs="{'required':[ ('provider', '=', 'cinetpay'), ('state', '!=', 'disabled')]}"/>
+                </group>
+       </xpath>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="cinetpay.action_window">
+      <field name="name">cinetpay window</field>
+      <field name="res_model">cinetpay.cinetpay</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="cinetpay.action_server">
+      <field name="name">cinetpay server</field>
+      <field name="model_id" ref="model_cinetpay_cinetpay"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="cinetpay" id="cinetpay.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="cinetpay.menu_1" parent="cinetpay.menu_root"/>
+    <menuitem name="Menu 2" id="cinetpay.menu_2" parent="cinetpay.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="cinetpay.menu_1_list" parent="cinetpay.menu_1"
+              action="cinetpay.action_window"/>
+    <menuitem name="Server to list" id="cinetpay" parent="cinetpay.menu_2"
+              action="cinetpay.action_server"/>
+-->
+  </data>
+</odoo>

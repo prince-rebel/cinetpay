@@ -1,0 +1,11 @@
+<odoo>
+    <data>
+
+        <template id="cinetpay_form">
+           <form t-att-action="redirect_url" method="post">
+            <input type="hidden" name="amount" t-att-value="amount"/>
+        </form>
+        </template>
+
+    </data>
+</odoo>
